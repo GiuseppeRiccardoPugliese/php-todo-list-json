@@ -21,7 +21,7 @@ export default {
   <h1>Ecco la golosa lista dei compiti da svolgere: </h1>
   <ul>
     <li v-for="(compito, index) in todoArr" :key="index">
-      <span :class="compito.done ? 'text' : ''">{{ compito.compito }}</span>
+      <span :class="compito.done ? 'text' : ''" @click="compito.done = !compito.done">{{ compito.compito }}</span>
     </li>
   </ul>
 </template>
@@ -29,6 +29,10 @@ export default {
 <style scoped>
 .text {
   text-decoration: line-through;
+}
+
+span:hover {
+  cursor: pointer;
 }
 
 .read-the-docs {
