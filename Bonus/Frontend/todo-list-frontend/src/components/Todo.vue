@@ -8,12 +8,17 @@ export default {
       todoArr: [],
     };
   },
+  methods: {
+    delTask(i) {
+      this.todoArr.splice(i, 1);
+    },
+  },
   mounted() {
     axios.get('http://localhost/php-todo-list-json/Backend/').then((res) => {
       this.todoArr = res.data;
     }
     )
-  }
+  },
 }
 </script>
 
@@ -22,11 +27,18 @@ export default {
   <ul>
     <li v-for="(compito, index) in todoArr" :key="index">
       <span :class="compito.done ? 'text' : ''" @click="compito.done = !compito.done">{{ compito.compito }}</span>
+
+      <i class="fa-solid fa-xmark" @click="delTask(i)"></i>
     </li>
   </ul>
 </template>
 
 <style scoped>
+.fa-xmark {
+  margin: 0 5px;
+  cursor: pointer;
+}
+
 .text {
   text-decoration: line-through;
 }
